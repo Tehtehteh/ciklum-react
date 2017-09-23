@@ -14,7 +14,7 @@ class Article extends React.Component {
         };
     }
   componentWillMount() {
-      if (location.search === "") {
+      if (location.search.split('?articleURL=')[1] === "") {
           this.setState(
               {
                   headline: null,

@@ -94,7 +94,8 @@ let DraftsHandler = function(req, res){
 let UpdateParagraphHandler = function(req, res){
     if (req.body.usersText === '' || req.body.url === ''){
         res.status(404);
-        res.end()
+        res.end();
+        return
     }
     let paragraphDraft = {
         url: req.body.url,

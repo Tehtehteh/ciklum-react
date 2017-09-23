@@ -71,7 +71,7 @@ class Articles extends React.Component {
                 <div className="input-group search-bar">
                   <input type="text" className="form-control" onChange={this.onChangeArticleUrl} placeholder="Article URL" aria-label="Article URL"/>
                   <span className="input-group-btn">
-                    <button className="btn search-button" onClick={this.submitArticleHandler} type="button">Go!</button>
+                    <button className="btn md-primary" onClick={this.submitArticleHandler} type="button">Go!</button>
                   </span>
                 </div>
             </div>
