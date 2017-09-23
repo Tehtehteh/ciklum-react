@@ -5,8 +5,6 @@ let express = require("express"),
     port = 3000,
     bodyParser = require('body-parser');
 
-require('./db');
-
 
 // Serving static files from dict directory
 app.use('/static', express.static(path.join(path.dirname(__dirname), 'dist')));
