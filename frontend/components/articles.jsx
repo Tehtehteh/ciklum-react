@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 
 class Articles extends React.Component {
     constructor(props){
@@ -30,7 +32,7 @@ class Articles extends React.Component {
               let articles = [];
               for (let i = 0; i < res.data.articles.length; i++){
                   articles.push({
-                      fbUrl: location.origin + '/fb?articleURL=' + res.data.articles[i].url,
+                      fbUrl: '/fb?articleURL=' + res.data.articles[i].url,
                       originUrl: res.data.articles[i].url
                   })
               }
@@ -67,7 +69,7 @@ class Articles extends React.Component {
           </div> :
             <div className="list-group">
                 {this.state.articles.map((item, index) =>
-                    <a key={index} className="list-group-item list-group-item-action" href={item.fbUrl}>{item.originUrl}</a>)}
+                    <Link key={index} className="list-group-item list-group-item-action" to={item.fbUrl}>{item.originUrl}</Link>)}
                 <div className="input-group search-bar">
                   <input type="text" className="form-control" onChange={this.onChangeArticleUrl} placeholder="Article URL" aria-label="Article URL"/>
                   <span className="input-group-btn">
