@@ -22,5 +22,5 @@ app.get('/*', function(req, res) {
 });
 
 module.exports = app.listen(port, function(){
-    console.log('Serving...');
+    console.log('Serving... on', port, 'port');
 });

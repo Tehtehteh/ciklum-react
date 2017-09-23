@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+
 
 class Header extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
-              <a className="navbar-brand" href="/"><code>React app</code></a>
+                <Link className="navbar-brand" to=""><code>React app</code></Link>
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                  <a className="nav-item nav-link" href="/fb/results">Results</a>
+                    <Link className="nav-item nav-link" to="/fb/results">Results</Link>
                 </div>
               </div>
             </nav>
