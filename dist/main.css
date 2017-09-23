@@ -1,0 +1,39 @@
+.body {
+    margin: 0;
+}
+
+.article-paragraph{
+    border: solid #f7f7f9;
+    position: relative;
+}
+
+.paragraph-label{
+    font-size: 1.5em;
+    font-weight: 700;
+    color: deepskyblue;
+    font-variant: all-petite-caps;
+}
+
+.accept-button{
+    float: right;
+}
+
+.page-header{
+    text-align: center;
+}
+
+.info-container{
+    margin-top: 42px;
+}
+
+.my-navbar{
+    background-color: #56c5fd;
+}
+
+.search-bar{
+    margin-top: 50px;
+}
+
+.search-button{
+    background-color: #56c5fd;
+}

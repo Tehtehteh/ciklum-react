@@ -39,13 +39,13 @@ let DeleteDraftHandler = function(req, res){
 
 let ApproveDraftHandler = function(req, res) {
     db.collection('drafts').findOneAndUpdate({_id: ObjectId(req.body.id)}, {$set: {isApproved: true}}).then((_) => {
-        db.collection('articles').findOne({articleURL: req.body.url}).then((item, err) => {
+        db.collection('articles').findOne({url: req.body.url}).then((item, err) => {
             if (!item){
                 res.sendStatus(404);
                 res.end()
             } else if (item){
                 item.paragraphs[parseInt(req.body.key)] = req.body.text;
-                db.collection('articles').findOneAndUpdate({articleURL: req.body.url}, {$set: {paragraphs: item.paragraphs}}).then((_) => {
+                db.collection('articles').findOneAndUpdate({url: req.body.url}, {$set: {paragraphs: item.paragraphs}}).then((_) => {
                     res.sendStatus(200);
                     res.end();
                 })

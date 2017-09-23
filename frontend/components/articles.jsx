@@ -6,12 +6,25 @@ class Articles extends React.Component {
         super(props);
         this.state = {
             articles: [],
-            error: ''
+            error: '',
+            searchArticleUrl: '',
         };
+        this.submitArticleHandler = (e) => this._submitArticleHandler(e);
+        this.onChangeArticleUrl = (e) => this._onChangeArticleUrl(e);
     }
-  componentWillMount() {
+
+    _submitArticleHandler(e){
+        location = location + 'fb?articleURL=' + this.state.searchArticleUrl;
+    }
+
+    _onChangeArticleUrl(e){
+        this.setState({
+            searchArticleUrl: e.target.value
+        })
+    }
+
+    componentWillMount() {
       let requestURL = location.origin + '/api/articles';
-      console.log(requestURL);
       axios.get(requestURL)
           .then(res => {
               let articles = [];
@@ -55,6 +68,12 @@ class Articles extends React.Component {
             <div className="list-group">
                 {this.state.articles.map((item, index) =>
                     <a key={index} className="list-group-item list-group-item-action" href={item.fbUrl}>{item.originUrl}</a>)}
+                <div className="input-group search-bar">
+                  <input type="text" className="form-control" onChange={this.onChangeArticleUrl} placeholder="Article URL" aria-label="Article URL"/>
+                  <span className="input-group-btn">
+                    <button className="btn search-button" onClick={this.submitArticleHandler} type="button">Go!</button>
+                  </span>
+                </div>
             </div>
     );
   }
