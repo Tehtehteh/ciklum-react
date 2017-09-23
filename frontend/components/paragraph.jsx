@@ -30,6 +30,11 @@ class Paragraph extends React.Component {
             this.setState({
                 sent: true
             })
+        })
+        .catch((err) => {
+            this.setState({
+                error: err
+            })
         });
         e.preventDefault()
     }
