@@ -7,7 +7,8 @@ class Drafts extends React.Component {
         super(props);
         this.state = {
             drafts: [],
-            error: ''
+            error: '',
+            loading: true
         };
         this.handleDraftUnMount = (draftId) => this._handleDraftUnMount(draftId);
     }
@@ -19,19 +20,22 @@ class Drafts extends React.Component {
                   const drafts = res.data.drafts;
                   this.setState(_ => ({
                       drafts: drafts,
-                      error: error ? error : null
+                      error: error ? error : null,
+                      loading: false
+
                   }));
               }).catch(function(err){
                   this.setState(_ => ({
                       drafts: null,
-                      error: err
+                      error: err,
+                      loading: false
               }));
           });
       }
 
     _handleDraftUnMount(draftId){
         let updatedDrafts = this.state.drafts.filter(function(draft){
-            return draft.id != draftId;
+            return draft.id !== draftId;
         });
         this.setState(_ => ({
             drafts: updatedDrafts,
@@ -42,6 +46,7 @@ class Drafts extends React.Component {
     render(){
         const error = this.state.error || null;
         const hasDrafts = this.state.drafts.length;
+        const loading = this.state.loading;
         return (
             error?<div className="alert alert-danger" role="alert">{error}</div> :
             hasDrafts?
@@ -51,6 +56,15 @@ class Drafts extends React.Component {
                 </div>
                 {this.state.drafts.map((item, index) => <Draft key={index} index={item.index} url={item.url} onAction={this.handleDraftUnMount} draftId={item.id} originText={item.originalText} usersText={item.usersText}/>)}
             </div>:
+                loading?<div className="container info-container">
+              <div className="row justify-content-md-center">
+                  <div className="card container-fluid">
+                    <div className="card-body center-block">
+                        <i className="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"/>
+                    </div>
+                  </div>
+              </div>
+          </div>:
             <div className="container info-container">
               <div className="row justify-content-md-center">
                   <div className="card container-fluid">
